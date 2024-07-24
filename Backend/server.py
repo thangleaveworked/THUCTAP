@@ -3,7 +3,7 @@ import requests
 import os
 from io import BytesIO
 import google.generativeai as genai
-import easyocr
+# import easyocr
 import numpy as np
 from PIL import Image
 import json
@@ -26,28 +26,28 @@ db_config = {
     'host': 'localhost',
     'database': 'thuctap'
 }
-def extract_text_from_image(image):
-    # Tạo đối tượng reader của EasyOCR
-    reader = easyocr.Reader(['vi', 'en'], gpu=True)
-
-    # Tăng độ phân giải của ảnh
-    width, height = image.size
-    new_width = width * 5
-    new_height = height * 5
-    resized_image = image.resize((new_width, new_height), Image.LANCZOS)
-
-    # Chuyển đổi ảnh nhị phân thành mảng numpy
-    binary_image_array = np.array(resized_image)
-
-    # Đọc văn bản từ hình ảnh nhị phân
-    result = reader.readtext(binary_image_array)
-    print(result)
-    # Ghép các đoạn văn bản thành một chuỗi duy nhất
-    extracted_text = '\n'.join([text[1] for text in result])
-
-    ocr_data = {text[1]: text[2] for text in result}
-    print(extracted_text)
-    return extracted_text
+# def extract_text_from_image(image):
+#     # Tạo đối tượng reader của EasyOCR
+#     reader = easyocr.Reader(['vi', 'en'], gpu=True)
+#
+#     # Tăng độ phân giải của ảnh
+#     width, height = image.size
+#     new_width = width * 5
+#     new_height = height * 5
+#     resized_image = image.resize((new_width, new_height), Image.LANCZOS)
+#
+#     # Chuyển đổi ảnh nhị phân thành mảng numpy
+#     binary_image_array = np.array(resized_image)
+#
+#     # Đọc văn bản từ hình ảnh nhị phân
+#     result = reader.readtext(binary_image_array)
+#     print(result)
+#     # Ghép các đoạn văn bản thành một chuỗi duy nhất
+#     extracted_text = '\n'.join([text[1] for text in result])
+#
+#     ocr_data = {text[1]: text[2] for text in result}
+#     print(extracted_text)
+#     return extracted_text
 
 def interact_with_gemini(prompt, history=[]):
     # Tạo đối tượng mô hình GenerativeAI
@@ -834,4 +834,4 @@ def handle_api_request():
 
 # Chạy ứng dụng trên địa chỉ IP nội bộ và cổng mặc định là 5000
 if __name__ == '__main__':
-    app.run(host='192.168.2.23', port=5000)
+    app.run(host='192.168.2.24', port=5000)
