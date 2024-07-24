@@ -34,5 +34,3 @@ def send_email(subject, body, to_email):
     finally:
         server.quit()  # Đóng kết nối đến máy chủ SMTP
 
-# Gửi email
-send_email("đòi nợ", "ai là goat server", "21004173@st.vlute.edu.vn")
