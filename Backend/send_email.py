@@ -32,5 +32,5 @@ def send_email(subject, body, to_email):
         print(f"Lỗi khi gửi email: {e}")
 
     finally:
-        server.quit()  # Đóng kết nối đến máy chủ SMTP
+        server.quit() 
 
